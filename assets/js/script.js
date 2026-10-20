@@ -110,6 +110,12 @@ function aggiungiTask() {
   });
 }
 
+
+function aggiornaContatore() {
+	contatore.textContent = myTask.length;
+}
+
 aggiungiTask();
+aggiornaContatore();
 
 
