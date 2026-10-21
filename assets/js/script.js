@@ -25,6 +25,7 @@
 
 
 /*intercetto la lista e il contatore*/
+const inputTask = document.querySelector("#nuovo-task");
 const listaTask = document.querySelector("#lista-task");
 const contatore = document.querySelector("#contatore");
 
