@@ -23,9 +23,16 @@
 */
 
 
+/**/
+/*intercetto campo di imput e relativo bottone aggiungi*/
+const inputTask = document.querySelector("#nuovo-task"); 
+const bottoneAggiungi = document.querySelector("#bottone-aggiungi")
+const taskForm = document.querySelector("#taskForm");
+/*filtri per lo stato del task*/
+const filtri = document.querySelector("#filtri");
+const btnFiltro = document.querySelectorAll(".btn-filtro");
 
 /*intercetto la lista e il contatore*/
-const inputTask = document.querySelector("#nuovo-task");
 const listaTask = document.querySelector("#lista-task");
 const contatore = document.querySelector("#contatore");
 
@@ -59,11 +66,20 @@ const myTask = [
   },
 ];
 
-/*manipolazioni sul DOM (blocco di codice funzionale / side-effects)*/
-function aggiungiTask() {
+/*manipolazioni sul DOM (blocco di codice funzionale / side-effects).*/
+function renderTasks() {
+
+  listaTask.textContent = "";
+
+  if(myTask.length === 0) {
+    const newP = document.createElement("p");
+    newP.textContent = "Non ci sono elementi";
+    listaTask.appendChild(newP);
+    return;
+  }
 
   /*per scorrere tutti gli oggetti nell'array*/
-  myTask.forEach((task) =>{
+  myTask.forEach((task, index) =>{
 
     /*Creazione e configurazione del tag <li>*/
     const newLi = document.createElement("li");
@@ -98,6 +114,9 @@ function aggiungiTask() {
 
      /*genero il nodo <button>*/
     const elimina = document.createElement("button");
+    elimina.setAttribute("type", "button");
+    elimina.setAttribute("id", index +1);
+
     /*scrivo la parola "Elimina" dentro il bottone usando la proprietà '.textContent'*/
     elimina.textContent = "Elimina";
     /*Aggancia (figlio nel genitore intermedio): metto il bottone 'elimina' dentro 'taskDate' così eredita il posizionamento a destra dato dalla classe*/
@@ -112,11 +131,37 @@ function aggiungiTask() {
 }
 
 
+taskForm.addEventListener("submit", (event) => {
+ event.preventDefault();
+ 
+ if(inputTask.value.trim() !== "") {
+ const newObj = {
+    titoloTask: inputTask.value.trim(),
+    priorita: "alta",
+    data: new Date(),
+  }
+
+  inputTask.value = "";
+  myTask.push(newObj);
+  renderTasks()
+ }
+});
+
+/*taskList.addEventListener("click", (e) => {
+  e.preventDefault();
+  if (e.target.type === "button") {
+    console.log("Hai cliccato il bottone");
+    
+    aggiungiTask();
+  }
+})*/
+
+
 function aggiornaContatore() {
 	contatore.textContent = myTask.length;
 }
 
-aggiungiTask();
+renderTasks();
 aggiornaContatore();
 
 
