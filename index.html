@@ -4,25 +4,28 @@
 		<meta charset="UTF-8" />
 		<title>Task Manager</title>
 		<link rel="stylesheet" href="assets/css/style.css" />
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer">
 	</head>
 	<body>
-		<h1 id="titolo">I miei task</h1>
+	<div class="container">
+		<div class="todo-app">
+			<h1>To Do App</h1>
 
-		<form id="taskForm" class="aggiunta">
-			<input id="nuovo-task" placeholder="Cosa devi fare?" type="text" name="nuovo-task"/>
-			<button id="bottone-aggiungi" type="submit" >Aggiungi</button>
-		</form>
-
-		<div id="filtri"  class="filtri">
-			<button type="button" id="tutti" class="btn-filtro attivo">Tutti</button>
-			<button type="button" id="attivi" class="btn-filtro">Attivi</button>
-			<button type="button" id="completati" class="btn-filtro">Completati</button>
+			<form class="input-area">
+				<input type="text" placeholder="Add a new task..." id="task-input">
+				<button type="submit" id="add-task-btn"><i class="fa-regular fa-plus"></i></button>
+			</form>
+			<div class="to-dos-container">
+				<div class="empty-state" id="empty-state">
+					<img src="assets/img/empty.svg" alt="empty illustration" class="empty-image">
+					<p>You have no tasks</p>
+				</div>
+				<ul id="task-list">
+					
+				</ul>
+			</div>
 		</div>
-
-		<ul id="lista-task"></ul>
-
-		<p>Totale: <span id="contatore">0</span></p>
-
+	</div>
 		<script src="assets/js/script.js"></script>
 	</body>
 </html>
